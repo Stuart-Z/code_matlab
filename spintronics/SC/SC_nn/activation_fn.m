@@ -2,7 +2,7 @@ clear;
 tic;
 bit_length=128;
 sequence_length=1024;
-for j=1:1:400
+for j=1:1:200
     %%
     input1=unifrnd(0,bit_length);    sympol1=sign(rand(1,1)-0.5);
     input2=unifrnd(0,bit_length);    sympol2=sign(rand(1,1)-0.5);
@@ -45,7 +45,7 @@ for j=1:1:400
     %         out(i)=sigmf(voltage_c,[6,0]);
     %     end
     
-    max_state=2*5-1;
+    max_state=8-1;
     state=floor(max_state/2);
     %% FSM
     for i=1:1:sequence_length
