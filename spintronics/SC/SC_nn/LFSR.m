@@ -16,7 +16,9 @@ switch(bit_length)
     case 7
         feedback=[0,0,1,0,0,0,1];  
     case 6
-        feedback=[1,0,0,0,0,1];  
+        feedback=[1,0,0,0,0,1];
+    case 5
+        feedback=[0,1,0,0,1];
 end
 
 
