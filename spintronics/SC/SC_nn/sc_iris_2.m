@@ -96,9 +96,6 @@ for x=1:1:10
             output_2(j)=voltage2_2;
             output_3(j)=voltage2_3;
             
-            % output_1=layer1_1*logits_weights(1,1)+layer1_2*logits_weights(2,1)+layer1_3*logits_weights(3,1)+layer1_4*logits_weights(4,1)+logits_biases(1);
-            % output_2=layer1_1*logits_weights(1,2)+layer1_2*logits_weights(2,2)+layer1_3*logits_weights(3,2)+layer1_4*logits_weights(4,2)+logits_biases(2);
-            % output_3=layer1_1*logits_weights(1,3)+layer1_2*logits_weights(2,3)+layer1_3*logits_weights(3,3)+layer1_4*logits_weights(4,3)+logits_biases(3);
         end
         
         output1=sum(output_1)/sequence_length;

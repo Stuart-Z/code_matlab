@@ -36,7 +36,7 @@ for j=1:1:200
     output=sum(out);
     input(j)=(sympol1*input1+sympol2*input2+sympol3*input3+sympol4*input4+sympol5*input5);
     result(j)=output/bit_length;
-    sigmoid(j)=sigmf(input(j),[12,0]);
+    sigmoid(j)=sigmf(input(j),[8,0]);
     j
 end
 figure;

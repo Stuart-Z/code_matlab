@@ -3,7 +3,7 @@ tic;
 bit=10;
 bit_length=64;
 sequence_length=256*8;
-for j=1:1:200
+for j=1:1:400
     %%
     input1=unifrnd(0,bit_length);    sympol1=sign(rand(1,1)-0.5);
     input2=unifrnd(0,bit_length);    sympol2=sign(rand(1,1)-0.5);
@@ -34,7 +34,7 @@ for j=1:1:200
     output=sum(out);
     input(j)=(sympol1*input1+sympol2*input2+sympol3*input3+sympol4*input4+sympol5*input5)/bit_length;
     result(j)=output/sequence_length;
-    sigmoid(j)=sigmf(input(j),[12,0]);
+    sigmoid(j)=sigmf(input(j),[10,0]);
     j
 end
 figure;

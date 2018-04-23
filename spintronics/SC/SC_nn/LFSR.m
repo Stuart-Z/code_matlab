@@ -2,11 +2,14 @@ function sequence = LFSR( init, bit_length,input)
 
 n = bit_length;
 N = 2^n;
+init=round(unifrnd(0,N-1));
 register = dec2bin(init,bit_length)-'0';                     %定义移位寄存器的初始状态
 register=zeros(1,n)+register;
 newregister = zeros(1, n);
 sequence = zeros(1, N);
 switch(bit_length)
+    case 11
+        feedback=[0,1,0,0,0,0,0,0,0,0,1];
     case 10
         feedback=[0,0,1,0,0,0,0,0,0,1];
     case 9
