@@ -3,10 +3,11 @@
 clear;
 tic;
 %% 参数定义
-for x=1:1:50
-    bit=9;
+for x=1:1:1
+    bit=7;
     sequence_length=round(2^bit);    %随机数序列的长度
-    
+    seed1=1;    seed2=2;    seed3=3;    seed4=4;
+    seed5=53;
     iris_data = csvread('iris_test.csv',1,0);
     layer1_weights=[-1.0034,	2.11911,	-1.62791,	0.231651,	0.61993,	-1.83723,	-1.98954,	1.88547,	1.09951,	0.601555;
                     -2.31297,	2.67501,	-3.63939,	4.03773,	-1.5156,	-1.44924,	-1.25797,	3.04525,	3.58217,	-3.83612;
@@ -40,39 +41,39 @@ for x=1:1:50
         max_state=8-1;
         [state1,state2,state3,state4,state5,state6,state7,state8,state9,state10]=deal(floor(max_state/2));
         
-        test_s1=LFSR(1,bit,test(1));test_s2=LFSR(2,bit,test(2));test_s3=LFSR(3,bit,test(3));test_s4=LFSR(4,bit,test(4));
-        layer1_biases_s1=LFSR(5,bit,layer1_biases(1));layer1_biases_s2=LFSR(5,bit,layer1_biases(2));layer1_biases_s3=LFSR(5,bit,layer1_biases(3));layer1_biases_s4=LFSR(5,bit,layer1_biases(4));
-        layer1_biases_s5=LFSR(5,bit,layer1_biases(5));layer1_biases_s6=LFSR(5,bit,layer1_biases(6));layer1_biases_s7=LFSR(5,bit,layer1_biases(7));layer1_biases_s8=LFSR(5,bit,layer1_biases(8));
-        layer1_biases_s9=LFSR(5,bit,layer1_biases(9));layer1_biases_s10=LFSR(5,bit,layer1_biases(10));
+        test_s1=LFSR(seed1,bit,test(1));test_s2=LFSR(seed2,bit,test(2));test_s3=LFSR(seed3,bit,test(3));test_s4=LFSR(seed4,bit,test(4));
+        layer1_biases_s1=LFSR(seed5,bit,layer1_biases(1));layer1_biases_s2=LFSR(seed5,bit,layer1_biases(2));layer1_biases_s3=LFSR(seed5,bit,layer1_biases(3));layer1_biases_s4=LFSR(seed5,bit,layer1_biases(4));
+        layer1_biases_s5=LFSR(seed5,bit,layer1_biases(5));layer1_biases_s6=LFSR(seed5,bit,layer1_biases(6));layer1_biases_s7=LFSR(seed5,bit,layer1_biases(7));layer1_biases_s8=LFSR(seed5,bit,layer1_biases(8));
+        layer1_biases_s9=LFSR(seed5,bit,layer1_biases(9));layer1_biases_s10=LFSR(seed5,bit,layer1_biases(10));
         
-        logits_biases_s1=LFSR(5,bit,logits_biases(1));logits_biases_s2=LFSR(5,bit,logits_biases(2));logits_biases_s3=LFSR(5,bit,logits_biases(3));
+        logits_biases_s1=LFSR(seed5,bit,logits_biases(1));logits_biases_s2=LFSR(seed5,bit,logits_biases(2));logits_biases_s3=LFSR(seed5,bit,logits_biases(3));
         
-        layer1_weights_s11=LFSR(6,bit,layer1_weights(1,1));layer1_weights_s12=LFSR(6,bit,layer1_weights(1,2));layer1_weights_s13=LFSR(6,bit,layer1_weights(1,3));layer1_weights_s14=LFSR(6,bit,layer1_weights(1,4));
-        layer1_weights_s15=LFSR(6,bit,layer1_weights(1,5));layer1_weights_s16=LFSR(6,bit,layer1_weights(1,6));layer1_weights_s17=LFSR(6,bit,layer1_weights(1,7));layer1_weights_s18=LFSR(6,bit,layer1_weights(1,8));
-        layer1_weights_s19=LFSR(6,bit,layer1_weights(1,9));layer1_weights_s110=LFSR(6,bit,layer1_weights(1,10));
+        layer1_weights_s11=LFSR(seed5,bit,layer1_weights(1,1));layer1_weights_s12=LFSR(seed5,bit,layer1_weights(1,2));layer1_weights_s13=LFSR(seed5,bit,layer1_weights(1,3));layer1_weights_s14=LFSR(seed5,bit,layer1_weights(1,4));
+        layer1_weights_s15=LFSR(seed5,bit,layer1_weights(1,5));layer1_weights_s16=LFSR(seed5,bit,layer1_weights(1,6));layer1_weights_s17=LFSR(seed5,bit,layer1_weights(1,7));layer1_weights_s18=LFSR(seed5,bit,layer1_weights(1,8));
+        layer1_weights_s19=LFSR(seed5,bit,layer1_weights(1,9));layer1_weights_s110=LFSR(seed5,bit,layer1_weights(1,10));
         
-        layer1_weights_s21=LFSR(7,bit,layer1_weights(2,1));layer1_weights_s22=LFSR(7,bit,layer1_weights(2,2));layer1_weights_s23=LFSR(7,bit,layer1_weights(2,3));layer1_weights_s24=LFSR(7,bit,layer1_weights(2,4));
-        layer1_weights_s25=LFSR(7,bit,layer1_weights(2,5));layer1_weights_s26=LFSR(7,bit,layer1_weights(2,6));layer1_weights_s27=LFSR(7,bit,layer1_weights(2,7));layer1_weights_s28=LFSR(7,bit,layer1_weights(2,8));
-        layer1_weights_s29=LFSR(7,bit,layer1_weights(2,9));layer1_weights_s210=LFSR(7,bit,layer1_weights(2,10));
+        layer1_weights_s21=LFSR(seed5,bit,layer1_weights(2,1));layer1_weights_s22=LFSR(seed5,bit,layer1_weights(2,2));layer1_weights_s23=LFSR(seed5,bit,layer1_weights(2,3));layer1_weights_s24=LFSR(seed5,bit,layer1_weights(2,4));
+        layer1_weights_s25=LFSR(seed5,bit,layer1_weights(2,5));layer1_weights_s26=LFSR(seed5,bit,layer1_weights(2,6));layer1_weights_s27=LFSR(seed5,bit,layer1_weights(2,7));layer1_weights_s28=LFSR(seed5,bit,layer1_weights(2,8));
+        layer1_weights_s29=LFSR(seed5,bit,layer1_weights(2,9));layer1_weights_s210=LFSR(seed5,bit,layer1_weights(2,10));
         
-        layer1_weights_s31=LFSR(8,bit,layer1_weights(3,1));layer1_weights_s32=LFSR(8,bit,layer1_weights(3,2));layer1_weights_s33=LFSR(8,bit,layer1_weights(3,3));layer1_weights_s34=LFSR(8,bit,layer1_weights(3,4));
-        layer1_weights_s35=LFSR(8,bit,layer1_weights(3,5));layer1_weights_s36=LFSR(8,bit,layer1_weights(3,6));layer1_weights_s37=LFSR(8,bit,layer1_weights(3,7));layer1_weights_s38=LFSR(8,bit,layer1_weights(3,8));
-        layer1_weights_s39=LFSR(8,bit,layer1_weights(3,9));layer1_weights_s310=LFSR(8,bit,layer1_weights(3,10));
+        layer1_weights_s31=LFSR(seed5,bit,layer1_weights(3,1));layer1_weights_s32=LFSR(seed5,bit,layer1_weights(3,2));layer1_weights_s33=LFSR(seed5,bit,layer1_weights(3,3));layer1_weights_s34=LFSR(seed5,bit,layer1_weights(3,4));
+        layer1_weights_s35=LFSR(seed5,bit,layer1_weights(3,5));layer1_weights_s36=LFSR(seed5,bit,layer1_weights(3,6));layer1_weights_s37=LFSR(seed5,bit,layer1_weights(3,7));layer1_weights_s38=LFSR(seed5,bit,layer1_weights(3,8));
+        layer1_weights_s39=LFSR(seed5,bit,layer1_weights(3,9));layer1_weights_s310=LFSR(seed5,bit,layer1_weights(3,10));
         
-        layer1_weights_s41=LFSR(9,bit,layer1_weights(4,1));layer1_weights_s42=LFSR(9,bit,layer1_weights(4,2));layer1_weights_s43=LFSR(9,bit,layer1_weights(4,3));layer1_weights_s44=LFSR(9,bit,layer1_weights(4,4));
-        layer1_weights_s45=LFSR(9,bit,layer1_weights(4,5));layer1_weights_s46=LFSR(9,bit,layer1_weights(4,6));layer1_weights_s47=LFSR(9,bit,layer1_weights(4,7));layer1_weights_s48=LFSR(9,bit,layer1_weights(4,8));
-        layer1_weights_s49=LFSR(9,bit,layer1_weights(4,9));layer1_weights_s410=LFSR(9,bit,layer1_weights(4,10));
+        layer1_weights_s41=LFSR(seed5,bit,layer1_weights(4,1));layer1_weights_s42=LFSR(seed5,bit,layer1_weights(4,2));layer1_weights_s43=LFSR(seed5,bit,layer1_weights(4,3));layer1_weights_s44=LFSR(seed5,bit,layer1_weights(4,4));
+        layer1_weights_s45=LFSR(seed5,bit,layer1_weights(4,5));layer1_weights_s46=LFSR(seed5,bit,layer1_weights(4,6));layer1_weights_s47=LFSR(seed5,bit,layer1_weights(4,7));layer1_weights_s48=LFSR(seed5,bit,layer1_weights(4,8));
+        layer1_weights_s49=LFSR(seed5,bit,layer1_weights(4,9));layer1_weights_s410=LFSR(seed5,bit,layer1_weights(4,10));
         
-        logits_weights_s11=LFSR(10,bit,logits_weights(1,1));logits_weights_s12=LFSR(10,bit,logits_weights(1,2));logits_weights_s13=LFSR(10,bit,logits_weights(1,3));
-        logits_weights_s21=LFSR(11,bit,logits_weights(2,1));logits_weights_s22=LFSR(11,bit,logits_weights(2,2));logits_weights_s23=LFSR(11,bit,logits_weights(2,3));
-        logits_weights_s31=LFSR(12,bit,logits_weights(3,1));logits_weights_s32=LFSR(12,bit,logits_weights(3,2));logits_weights_s33=LFSR(12,bit,logits_weights(3,3));
-        logits_weights_s41=LFSR(13,bit,logits_weights(4,1));logits_weights_s42=LFSR(13,bit,logits_weights(4,2));logits_weights_s43=LFSR(13,bit,logits_weights(4,3));
-        logits_weights_s51=LFSR(14,bit,logits_weights(5,1));logits_weights_s52=LFSR(14,bit,logits_weights(5,2));logits_weights_s53=LFSR(14,bit,logits_weights(5,3));
-        logits_weights_s61=LFSR(15,bit,logits_weights(6,1));logits_weights_s62=LFSR(15,bit,logits_weights(6,2));logits_weights_s63=LFSR(15,bit,logits_weights(6,3));
-        logits_weights_s71=LFSR(16,bit,logits_weights(7,1));logits_weights_s72=LFSR(16,bit,logits_weights(7,2));logits_weights_s73=LFSR(16,bit,logits_weights(7,3));
-        logits_weights_s81=LFSR(17,bit,logits_weights(8,1));logits_weights_s82=LFSR(17,bit,logits_weights(8,2));logits_weights_s83=LFSR(17,bit,logits_weights(8,3));
-        logits_weights_s91=LFSR(18,bit,logits_weights(9,1));logits_weights_s92=LFSR(18,bit,logits_weights(9,2));logits_weights_s93=LFSR(18,bit,logits_weights(9,3));
-        logits_weights_s101=LFSR(19,bit,logits_weights(10,1));logits_weights_s102=LFSR(19,bit,logits_weights(10,2));logits_weights_s103=LFSR(19,bit,logits_weights(10,3));
+        logits_weights_s11=LFSR(seed5,bit,logits_weights(1,1));logits_weights_s12=LFSR(seed5,bit,logits_weights(1,2));logits_weights_s13=LFSR(seed5,bit,logits_weights(1,3));
+        logits_weights_s21=LFSR(seed5,bit,logits_weights(2,1));logits_weights_s22=LFSR(seed5,bit,logits_weights(2,2));logits_weights_s23=LFSR(seed5,bit,logits_weights(2,3));
+        logits_weights_s31=LFSR(seed5,bit,logits_weights(3,1));logits_weights_s32=LFSR(seed5,bit,logits_weights(3,2));logits_weights_s33=LFSR(seed5,bit,logits_weights(3,3));
+        logits_weights_s41=LFSR(seed5,bit,logits_weights(4,1));logits_weights_s42=LFSR(seed5,bit,logits_weights(4,2));logits_weights_s43=LFSR(seed5,bit,logits_weights(4,3));
+        logits_weights_s51=LFSR(seed5,bit,logits_weights(5,1));logits_weights_s52=LFSR(seed5,bit,logits_weights(5,2));logits_weights_s53=LFSR(seed5,bit,logits_weights(5,3));
+        logits_weights_s61=LFSR(seed5,bit,logits_weights(6,1));logits_weights_s62=LFSR(seed5,bit,logits_weights(6,2));logits_weights_s63=LFSR(seed5,bit,logits_weights(6,3));
+        logits_weights_s71=LFSR(seed5,bit,logits_weights(7,1));logits_weights_s72=LFSR(seed5,bit,logits_weights(7,2));logits_weights_s73=LFSR(seed5,bit,logits_weights(7,3));
+        logits_weights_s81=LFSR(seed5,bit,logits_weights(8,1));logits_weights_s82=LFSR(seed5,bit,logits_weights(8,2));logits_weights_s83=LFSR(seed5,bit,logits_weights(8,3));
+        logits_weights_s91=LFSR(seed5,bit,logits_weights(9,1));logits_weights_s92=LFSR(seed5,bit,logits_weights(9,2));logits_weights_s93=LFSR(seed5,bit,logits_weights(9,3));
+        logits_weights_s101=LFSR(seed5,bit,logits_weights(10,1));logits_weights_s102=LFSR(seed5,bit,logits_weights(10,2));logits_weights_s103=LFSR(seed5,bit,logits_weights(10,3));
         
         for j=1:1:sequence_length
             

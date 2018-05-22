@@ -24,7 +24,7 @@ Hk
 %%%%%%%%%%%%%     VCMA[MKS]    %%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%72.864%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 P=0.33;
-V_vcma=1;                        %1.05984 HVCMA=HK Voltage across the MTJ,[V]
+V_vcma=0;                        %1.05984 HVCMA=HK Voltage across the MTJ,[V]
 ksi=100e-15;                    %VCMA constant [J/V.m];37e-10[erg/V.cm]
 t_fl=1e-9;                      %thickness of freelayer
 Area=50*50*10^-18;
@@ -40,13 +40,13 @@ delta=(mu0*(Hk-H_VCMA)*Ms*Vol)/(2*kB*T);
 delta
 % I_c=(alpha*g*q/uB/P)*Ms*Vol*(Hk-H_VCMA);    %from zhao Recent progresses in STT-MRAM 2016
 I_c=2*q*alpha*2*delta*kB*T/hbar/P;        %from datta 2017
-I=-20*10^-6;                            %current
+I=-300*10^-6;                            %current
 
 Hext=0;                         % external field
 H_bias=0;                       % bias magnetic field
 mp=[0 0 1];                     % pinned layer
 theta0=sqrt(kB*T/mu0/Ms/Hk/Vol);  % initial angle
-% theta0=0.3;
+% theta0=0.1;
 step=1e-3;
 
 %% Initial conditions of the simulation %%
@@ -54,7 +54,7 @@ mz = cos(theta0); % Magnet slightly off easy axis
 m_initial = [0 sqrt(1-mz^2) mz];
 
 %%   LLG     %%
-time1 = 20; % step_1 duration ns
+time1 = 25; % step_1 duration ns
 tot1 = time1/step;
 delta_t=step*10^-9; % time step
 [theta,phi,Time]=deal(zeros(1,tot1));
@@ -64,9 +64,9 @@ m_negtive=0;
 for i=1:1:tot1
     Time(i)=i*step;
 
-    if(i>10/step)
-        I=0;
-    end
+%     if(i>10/step)
+%         I=0;
+%     end
     %discription of thermal noise
     r=0+1.*randn(1,3); % Normal distribution, expectation = 0, standard deviation = 1
     Hth=(sqrt(2*kB*T*alpha/(mu0*Ms*gamma*Vol*delta_t)))*r; % thermal noise field
@@ -112,8 +112,10 @@ pos_probability=m_positive/(m_positive+m_negtive);
 pos_probability
 figure;
 hold on;
-% plot(Time,m(:,1),'k-','linewidth',1.0); % m_x
-% plot(Time,m(:,2),'b-','linewidth',1.0); % m_y
+plot(Time,m(:,1),'k-','linewidth',1.0); % m_x
+plot(Time,m(:,2),'b-','linewidth',1.0); % m_y
 plot(Time,m(:,3),'r-','linewidth',1.0); % m_z
+figure;
+plot3(m(:,1),m(:,2),m(:,3));
 toc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

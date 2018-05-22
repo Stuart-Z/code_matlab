@@ -5,7 +5,7 @@ tic;
 %% 参数定义
 for x=1:1:50
     bits_length=64;         %随机数产生的精度
-    sequence_length=1024;    %随机数序列的长度
+    sequence_length=64;    %随机数序列的长度
     
     iris_data = csvread('iris_test.csv',1,0);
     layer1_weights=[-1.0034,	2.11911,	-1.62791,	0.231651,	0.61993,	-1.83723,	-1.98954,	1.88547,	1.09951,	0.601555;

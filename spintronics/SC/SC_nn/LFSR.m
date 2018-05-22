@@ -2,7 +2,7 @@ function sequence = LFSR( init, bit_length,input)
 
 n = bit_length;
 N = 2^n;
-init=round(unifrnd(0,N-1));
+% init=round(unifrnd(0,N-1));
 register = dec2bin(init,bit_length)-'0';                     %定义移位寄存器的初始状态
 register=zeros(1,n)+register;
 newregister = zeros(1, n);
