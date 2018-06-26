@@ -2,8 +2,8 @@ clear;
 tic;
 bit=10;
 bit_length=64;
-sequence_length=256*8;
-for j=1:1:400
+sequence_length=1024;
+for j=1:1:1
     %%
     input1=unifrnd(0,bit_length);    sympol1=sign(rand(1,1)-0.5);
     input2=unifrnd(0,bit_length);    sympol2=sign(rand(1,1)-0.5);
@@ -21,13 +21,16 @@ for j=1:1:400
         rnb3(i)=s_bit(input3,bit_length);
         rnb4(i)=s_bit(input4,bit_length);
         rnb5(i)=s_bit(input5,bit_length);
-        
-        voltage_c=(sympol1*rnb1(i)+sympol2*rnb2(i)+sympol3*rnb3(i)+sympol4*rnb4(i)+sympol5*rnb5(i))*delta_v+voltage_c;
-        if(voltage_c<-0.9) voltage_c=-0.9;  end
-        if(voltage_c>0.9) voltage_c=0.9;    end
+        if i==1
+            voltage_c(i)=(sympol1*rnb1(i)+sympol2*rnb2(i)+sympol3*rnb3(i)+sympol4*rnb4(i)+sympol5*rnb5(i))*delta_v;
+        else
+            voltage_c(i)=(sympol1*rnb1(i)+sympol2*rnb2(i)+sympol3*rnb3(i)+sympol4*rnb4(i)+sympol5*rnb5(i))*delta_v+voltage_c(i-1);
+        end
+        if(voltage_c(i)<-0.9) voltage_c(i)=-0.9;  end
+        if(voltage_c(i)>0.9) voltage_c(i)=0.9;    end
         
 %         out(i)=sng_function_nn(340,voltage_c);
-        out(i)=s_bit(bit_length*sigmf(voltage_c,[6,0]),bit_length);
+        out(i)=s_bit(bit_length*sigmf(voltage_c(i),[6,0]),bit_length);
     end
 
     %% count
@@ -42,4 +45,6 @@ plot(input,result,'ro','MarkerSize',4);
 
 hold on;
 plot(input,sigmoid,'go','MarkerSize',4);
+figure;
+plot(voltage_c);
 toc

@@ -3,11 +3,11 @@
 clear;
 tic;
 %% 参数定义
-for x=1:1:1
-    bit=7;
+for x=1:1:100
+    bit=6;
     sequence_length=round(2^bit);    %随机数序列的长度
     seed1=1;    seed2=2;    seed3=3;    seed4=4;
-    seed5=53;
+    seed5=round(unifrnd(5,sequence_length-1));
     iris_data = csvread('iris_test.csv',1,0);
     layer1_weights=[-1.0034,	2.11911,	-1.62791,	0.231651,	0.61993,	-1.83723,	-1.98954,	1.88547,	1.09951,	0.601555;
                     -2.31297,	2.67501,	-3.63939,	4.03773,	-1.5156,	-1.44924,	-1.25797,	3.04525,	3.58217,	-3.83612;
@@ -202,7 +202,7 @@ for x=1:1:1
         if (index==iris_data(i,5)+1)
             accuracy(x)=accuracy(x)+1;
         end
-        
+        seed(x)=seed5;
     end
     x
 end
